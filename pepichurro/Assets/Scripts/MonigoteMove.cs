@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonigoteMove : MonoBehaviour {
 
+    public static float changeSpeed = 10f; // constante de cambio de velocidad del movimiento
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,23 +17,19 @@ public class MonigoteMove : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * 10f * Time.deltaTime);
+            transform.Translate(Vector3.left * changeSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * 10f * Time.deltaTime);
+            transform.Translate(Vector3.right * changeSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.down * 10f * Time.deltaTime);
+            transform.Translate(Vector3.down * changeSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.up * 10f * Time.deltaTime);
-        }
-        else
-        {
-
+            transform.Translate(Vector3.up * changeSpeed * Time.deltaTime);
         }
 	}
 }
