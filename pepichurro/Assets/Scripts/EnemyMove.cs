@@ -61,8 +61,7 @@ public class EnemyMove : MonoBehaviour {
         Vector3 newPos;
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("EnemyPickle"))
         {
-            print("elgo");
-            if (go.transform.position.y <= t.position.y)
+            if (go.transform.position.y <= t.position.y + 0.5f)
             {
                 if (go.transform.position.x < t.position.x)
                 {
