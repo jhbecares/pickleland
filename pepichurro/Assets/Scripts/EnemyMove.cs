@@ -12,6 +12,7 @@ public class EnemyMove : MonoBehaviour {
     public int count = 0;
     public int limitCount = 400;
 
+
 	// Use this for initialization
 	void Start () {
         monigote = GameObject.Find("Monigote").transform;
@@ -21,7 +22,7 @@ public class EnemyMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(this.count);
+        //print(this.count);
         this.count++;
         if (this.count >= limitCount)
         {
@@ -40,4 +41,6 @@ public class EnemyMove : MonoBehaviour {
         }
 
 	}
+
+   
 }
