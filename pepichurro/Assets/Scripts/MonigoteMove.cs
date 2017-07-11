@@ -57,9 +57,17 @@ public class MonigoteMove : MonoBehaviour {
             balaSpawn.position,
             balaSpawn.rotation);
 
-        // Add velocity to the bullet
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * 9;
+        int bulletVellocity = 30;
 
+        // Add velocity to the bullet
+        if (animator.GetBool("backwards"))
+        {
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * -bulletVellocity;
+        }
+        else
+        {
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.right * bulletVellocity;
+        }
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 8.0f);
     }
