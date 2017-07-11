@@ -14,11 +14,13 @@ public class MonigoteMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-        balaSpawn = GameObject.Find("Monigote").transform;
 	}
 
 	// Update is called once per frame
 	void Update () {
+
+        balaSpawn = GameObject.Find("Monigote").transform;
+
         animator.SetBool("walking", false);
         if (Input.GetKey(KeyCode.A))
         {
@@ -54,30 +56,32 @@ public class MonigoteMove : MonoBehaviour {
     {
         // Create the Bullet from the Bullet Prefab
 
+        Vector3 position;
+
         if (animator.GetBool("backwards"))
         {
-            balaSpawn.position = new Vector3(balaSpawn.position.x - 1, balaSpawn.position.y, 0);
+            position = new Vector3(balaSpawn.position.x - 1, balaSpawn.position.y, 0);
         }
         else
         {
-            balaSpawn.position = new Vector3(balaSpawn.position.x + 1, balaSpawn.position.y, 0);
+            position = new Vector3(balaSpawn.position.x + 1, balaSpawn.position.y, 0);
         }
 
         var bullet = (GameObject)Instantiate(
             balaPrefab,
-            balaSpawn.position,
+            position,
             balaSpawn.rotation);
 
-        int bulletVellocity = 30;
+        int bulletVelocity = 30;
 
         // Add velocity to the bullet
         if (animator.GetBool("backwards"))
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * -bulletVellocity;
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * -bulletVelocity;
         }
         else
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletVellocity;
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletVelocity;
         }
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 8.0f);

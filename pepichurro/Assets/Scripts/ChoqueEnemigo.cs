@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChoqueEnemigo : MonoBehaviour {
 
     private int vidas = 3;
+    public GameObject lastTriggerGo = null;
 
 	// Use this for initialization
 	void Start () {
@@ -18,18 +19,19 @@ public class ChoqueEnemigo : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("collider");
-        print("game object: " + this.gameObject.tag);
         if (this.gameObject.tag == "EnemyPickle" && other.tag == "Bala")
         {
             GameObject go = Utils.FindTaggedParent(other.gameObject);
+            if (go == lastTriggerGo)
+                return;
+            lastTriggerGo = go;
+
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
             if (go != null && other.tag == "Bala")
             {
 
                 Destroy(other.gameObject);
                 
-                print("On trigger enter: " + vidas);
                 // TODO parpadeo
 
                 // restar vida si la tuviera
@@ -40,10 +42,6 @@ public class ChoqueEnemigo : MonoBehaviour {
                     Destroy(this.gameObject);
                 }
             }
-        }
-        else
-        {
-            print("que maji");
         }
     }
 }
