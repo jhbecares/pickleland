@@ -9,8 +9,11 @@ public class BulletMove : MonoBehaviour {
 
     private bool right;
 
+    public AudioClip clip;
+
 	// Use this for initialization
 	void Start () {
+        AudioSource.PlayClipAtPoint(clip, this.transform.position);
 
         animator = GameObject.Find("Monigote").GetComponent<Animator>();
 

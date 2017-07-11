@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 3b9e9b9fbcadcc7438acd9adb07a26d5
-timeCreated: 1499788627
+timeCreated: 1499805402
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - lastTriggerGo: {instanceID: 0}
+  - clipHit: {fileID: 8300000, guid: 1b7c82e3fa2b07845ba47a664dba8b9d, type: 3}
+  - clipDeath: {fileID: 8300000, guid: c9b4e91ea9e399f479c335928347482d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

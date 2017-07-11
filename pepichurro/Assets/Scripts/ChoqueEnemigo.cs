@@ -6,6 +6,8 @@ public class ChoqueEnemigo : MonoBehaviour {
 
     private int vidas = 3;
     public GameObject lastTriggerGo = null;
+    public AudioClip clipHit;
+    public AudioClip clipDeath;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +33,7 @@ public class ChoqueEnemigo : MonoBehaviour {
             {
 
                 Destroy(other.gameObject);
-                
+
                 // TODO parpadeo
 
                 // restar vida si la tuviera
@@ -39,7 +41,12 @@ public class ChoqueEnemigo : MonoBehaviour {
                 // 
                 if (vidas <= 0)
                 {
+                    AudioSource.PlayClipAtPoint(clipDeath, this.gameObject.transform.position);
                     Destroy(this.gameObject);
+                }
+                else
+                {
+                    AudioSource.PlayClipAtPoint(clipHit, other.transform.position);
                 }
             }
         }

@@ -10,6 +10,8 @@ public class MonigoteMove : MonoBehaviour {
 
     public GameObject balaPrefab;
     public Transform balaSpawn;
+    public AudioClip clip;
+
 
     // Use this for initialization
     void Start () {
@@ -37,6 +39,11 @@ public class MonigoteMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.up * changeSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            AudioSource.PlayClipAtPoint(clip, this.transform.position);
         }
 
         // shoot?
