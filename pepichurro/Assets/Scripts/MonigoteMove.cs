@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class MonigoteMove : MonoBehaviour {
             animator.SetBool("backwards", false);
             transform.Translate(Vector3.right * changeSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.up * changeSpeed * Time.deltaTime);
         }
