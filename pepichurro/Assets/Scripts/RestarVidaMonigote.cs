@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChoqueEnemigo : MonoBehaviour {
+public class RestarVidaMonigote : MonoBehaviour {
 
-    private int vidas = 3;
+    private int vidas;
     public GameObject lastTriggerGo = null;
     public AudioClip clipHit;
     public AudioClip clipDeath;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-       
-	}
+        vidas = PlayerPrefs.GetInt("Lifes");
+    }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (this.gameObject.tag == "EnemyPickle" && other.tag == "Bala")
+        if (other.tag == "Bala")
         {
             GameObject go = Utils.FindTaggedParent(other.gameObject);
             if (go == lastTriggerGo)
@@ -41,11 +42,6 @@ public class ChoqueEnemigo : MonoBehaviour {
                 // 
                 if (vidas <= 0)
                 {
-                    // Sumar puntos
-                    int points = PlayerPrefs.GetInt("Points");
-                    points += 50;
-                    PlayerPrefs.SetInt("Points", points);
-
                     // audio y destruccion del objeto
                     AudioSource.PlayClipAtPoint(clipDeath, this.gameObject.transform.position);
                     Destroy(this.gameObject);
@@ -55,6 +51,7 @@ public class ChoqueEnemigo : MonoBehaviour {
                     AudioSource.PlayClipAtPoint(clipHit, other.transform.position);
                 }
 
+                PlayerPrefs.SetInt("Lifes", vidas);
             }
         }
     }
