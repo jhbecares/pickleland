@@ -13,14 +13,37 @@ public class ShieldManager : MonoBehaviour {
      * To think: ponemos un maximo de escudos?
      */
     public int neededPointsToShield = 200;
+    public int shieldTime = 200;
+    int shieldCount = 0;
+
+    public int waitTimeForShield = 200;
+    int waitCount = 0;
 
 	// Use this for initialization
 	void Start () {
-		
+        PlayerPrefs.SetInt("WaitCountShield", 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        print("timing shield: " + PlayerPrefs.GetInt("TimingShield"));
+        print("shield allowed: " + PlayerPrefs.GetInt("ShieldAllowed"));
+
+        if (PlayerPrefs.GetInt("TimingShield") == -1)
+        {
+            if (waitCount > 0)
+                waitCount--;
+
+            print("wait count: " + waitCount);
+            if (waitCount <= 0)
+            {
+                PlayerPrefs.SetInt("ShieldAllowed", 1);
+            }
+        }
+
+
+
 
         // Vemos si tenemos que activar la posibilidad de puntos
         int points = PlayerPrefs.GetInt("Points");
@@ -35,5 +58,25 @@ public class ShieldManager : MonoBehaviour {
         {
             PlayerPrefs.SetInt("ShieldAllowed", -1);
         }
+        
+
+        if (PlayerPrefs.GetInt("TimingShield") == 1)
+        {
+            shieldCount++;
+            if (shieldCount >= shieldTime)
+            {
+                // Quitarle el escudo!
+                PlayerPrefs.SetInt("ShieldSet", -1);
+                GameObject.FindGameObjectWithTag("Shield").GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+                // resetear todo
+                PlayerPrefs.SetInt("TimingShield", -1);
+                shieldCount = 0;
+
+                waitCount = waitTimeForShield;
+            }
+        }
+        PlayerPrefs.SetInt("WaitCountShield", waitCount);
+
 	}
 }

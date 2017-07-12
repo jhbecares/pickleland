@@ -46,7 +46,7 @@ public class MonigoteMove : MonoBehaviour {
             AudioSource.PlayClipAtPoint(clip, this.transform.position);
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1) && PlayerPrefs.GetInt("WaitCountShield") <= 0)
         {
             // el jugador quiere ponerse el shield!
             // si ha conseguido la puntuacion necesaria se lo ponemos
@@ -54,10 +54,11 @@ public class MonigoteMove : MonoBehaviour {
             {
                 // Puede ponerse shield!
                 PlayerPrefs.SetInt("ShieldSet", 1);
-
+                print("timing shield to 1");
+                PlayerPrefs.SetInt("TimingShield", 1);
                 GameObject.FindGameObjectWithTag("Shield").GetComponentInChildren<SpriteRenderer>().enabled = true;
-
-                SpriteRenderer.FindObjectOfType<SpriteRenderer>().enabled = false;
+                
+                //SpriteRenderer.FindObjectOfType<SpriteRenderer>().enabled = false;
             }
             else
             {

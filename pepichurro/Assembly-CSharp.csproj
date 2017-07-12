@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\MonigoteMove.cs" />
      <Compile Include="Assets\Scripts\PlayerLifes.cs" />
      <Compile Include="Assets\Scripts\PlayerPoints.cs" />
+     <Compile Include="Assets\Scripts\RandomBuildingGenerator.cs" />
      <Compile Include="Assets\Scripts\RestarVidaMonigote.cs" />
      <Compile Include="Assets\Scripts\ShieldManager.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
