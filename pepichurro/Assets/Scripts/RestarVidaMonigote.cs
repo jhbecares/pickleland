@@ -11,7 +11,7 @@ public class RestarVidaMonigote : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        PlayerPrefs.SetInt("ShieldSet", -1);
     }
 	
 	// Update is called once per frame
@@ -22,7 +22,7 @@ public class RestarVidaMonigote : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "BalaEnemigo")
+        if (other.tag == "BalaEnemigo" && PlayerPrefs.GetInt("ShieldSet") != 1)
         {
             GameObject go = Utils.FindTaggedParent(other.gameObject);
             if (go == lastTriggerGo)

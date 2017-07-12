@@ -46,6 +46,25 @@ public class MonigoteMove : MonoBehaviour {
             AudioSource.PlayClipAtPoint(clip, this.transform.position);
         }
 
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            // el jugador quiere ponerse el shield!
+            // si ha conseguido la puntuacion necesaria se lo ponemos
+            if (PlayerPrefs.GetInt("ShieldAllowed") == 1)
+            {
+                // Puede ponerse shield!
+                PlayerPrefs.SetInt("ShieldSet", 1);
+
+                GameObject.FindGameObjectWithTag("Shield").GetComponentInChildren<SpriteRenderer>().enabled = true;
+
+                SpriteRenderer.FindObjectOfType<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                // No puede :(
+            }
+        }
+
         // shoot?
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;

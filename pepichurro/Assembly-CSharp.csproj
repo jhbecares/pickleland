@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\PlayerLifes.cs" />
      <Compile Include="Assets\Scripts\PlayerPoints.cs" />
      <Compile Include="Assets\Scripts\RestarVidaMonigote.cs" />
+     <Compile Include="Assets\Scripts\ShieldManager.cs" />
      <Compile Include="Assets\Scripts\Utils.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
