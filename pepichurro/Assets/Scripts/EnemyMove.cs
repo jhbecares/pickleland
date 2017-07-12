@@ -13,10 +13,11 @@ public class EnemyMove : MonoBehaviour {
     public int limitCount = 200;
 
 
+
 	// Use this for initialization
 	void Start () {
         monigote = GameObject.Find("Monigote").transform;
-        enemySpawn = GameObject.Find("EnemyPickle").transform;
+        enemySpawn = GameObject.Find("EnemySpawn").transform;
         this.count = 0;
 	}
 	
@@ -43,20 +44,14 @@ public class EnemyMove : MonoBehaviour {
             enemyPrefab,
             enemySpawn.position,
             enemySpawn.rotation);
-
             this.count = 0;
+
         }
-
-
-        // move
-        
 	}
 
     void LateUpdate()
     {
-        print("lateupdate");
         Transform t = GameObject.Find("Monigote").transform;
-
         
         Vector3 newPos;
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("EnemyPickle"))
@@ -79,6 +74,9 @@ public class EnemyMove : MonoBehaviour {
             {
                 print("la altura no es la miiiisma loka");
             }
+
         }
     }
+
+
 }
