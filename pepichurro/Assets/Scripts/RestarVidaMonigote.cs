@@ -22,7 +22,7 @@ public class RestarVidaMonigote : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Bala")
+        if (other.tag == "BalaEnemigo")
         {
             GameObject go = Utils.FindTaggedParent(other.gameObject);
             if (go == lastTriggerGo)
@@ -30,7 +30,7 @@ public class RestarVidaMonigote : MonoBehaviour {
             lastTriggerGo = go;
 
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
-            if (go != null && other.tag == "Bala")
+            if (go != null && other.tag == "BalaEnemigo")
             {
 
                 Destroy(other.gameObject);
