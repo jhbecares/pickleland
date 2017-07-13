@@ -8,6 +8,10 @@ public class EnemyMove : MonoBehaviour {
     public GameObject balaPrefab;
     public Transform enemySpawn;
     private Transform monigote;
+    public int difficultyIncreaseDistance;
+    private int currentDifficultyDistance;
+    // The higher the difficultyIncrease is, the more enemies will spawn.
+    public int difficultyIncrease;
 
     public int count = 0;
     public int limitCount = 200;
@@ -19,6 +23,7 @@ public class EnemyMove : MonoBehaviour {
         monigote = GameObject.Find("Monigote").transform;
         enemySpawn = GameObject.Find("EnemySpawn").transform;
         this.count = 0;
+        this.currentDifficultyDistance = 0;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +52,16 @@ public class EnemyMove : MonoBehaviour {
             this.count = 0;
 
         }
-	}
+        if(monigote.position.x > currentDifficultyDistance + difficultyIncreaseDistance)
+        {
+            if(limitCount > 11)
+            {
+                currentDifficultyDistance = (int) monigote.position.x;
+                limitCount -= difficultyIncrease;
+            }
+        }
+
+    }
 
     void LateUpdate()
     {

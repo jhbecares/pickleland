@@ -89,12 +89,15 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CheckRayo.cs" />
     <Compile Include="Assets\Scripts\ChoqueEnemigo.cs" />
+    <Compile Include="Assets\Scripts\DoubleShotManager.cs" />
     <Compile Include="Assets\Scripts\EnemyMove.cs" />
+    <Compile Include="Assets\Scripts\HighScore.cs" />
     <Compile Include="Assets\Scripts\MonigoteMove.cs" />
     <Compile Include="Assets\Scripts\PlayerLifes.cs" />
     <Compile Include="Assets\Scripts\PlayerPoints.cs" />
     <Compile Include="Assets\Scripts\RandomBuildingGenerator.cs" />
     <Compile Include="Assets\Scripts\RestarVidaMonigote.cs" />
+    <Compile Include="Assets\Scripts\SceneManager.cs" />
     <Compile Include="Assets\Scripts\ShieldManager.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
   </ItemGroup>
