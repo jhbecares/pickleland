@@ -35,7 +35,7 @@ public class RestarVidaMonigote : MonoBehaviour {
 
                 Destroy(other.gameObject);
 
-                // TODO parpadeo
+                this.BlinkPlayer(4);
 
                 // restar vida si la tuviera
                 vidas--;
@@ -54,5 +54,25 @@ public class RestarVidaMonigote : MonoBehaviour {
                 PlayerPrefs.SetInt("Lifes", vidas);
             }
         }
+    }
+
+    void BlinkPlayer(int numBlinks)
+    {
+        StartCoroutine(DoBlinks(numBlinks, 0.05f));
+    }
+
+    IEnumerator DoBlinks(int numBlinks, float seconds)
+    {
+        for (int i = 0; i < numBlinks * 2; i++)
+        {
+            //toggle renderer
+            this.gameObject.GetComponent<Renderer>().enabled = !this.gameObject.GetComponent<Renderer>().enabled;
+
+            //wait for a bit
+            yield return new WaitForSeconds(seconds);
+        }
+
+        //make sure renderer is enabled when we exit
+        this.gameObject.GetComponent<Renderer>().enabled = true;
     }
 }

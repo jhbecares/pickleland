@@ -31,10 +31,7 @@ public class ChoqueEnemigo : MonoBehaviour {
             this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
             if (go != null && other.tag == "Bala")
             {
-
                 Destroy(other.gameObject);
-
-                // TODO parpadeo
 
                 // restar vida si la tuviera
                 vidas--;
@@ -53,9 +50,29 @@ public class ChoqueEnemigo : MonoBehaviour {
                 else
                 {
                     AudioSource.PlayClipAtPoint(clipHit, other.transform.position);
+                    this.BlinkPlayer(2); // llamamos a la corutina de parpadeo 
                 }
 
             }
         }
+    }
+    void BlinkPlayer(int numBlinks)
+    {
+        StartCoroutine(DoBlinks(numBlinks, 0.05f));
+    }
+
+    IEnumerator DoBlinks(int numBlinks, float seconds)
+    {
+        for (int i = 0; i < numBlinks * 2; i++)
+        {
+            //toggle renderer
+            this.gameObject.GetComponent<Renderer>().enabled = !this.gameObject.GetComponent<Renderer>().enabled;
+
+            //wait for a bit
+            yield return new WaitForSeconds(seconds);
+        }
+
+        //make sure renderer is enabled when we exit
+        this.gameObject.GetComponent<Renderer>().enabled = true;
     }
 }
