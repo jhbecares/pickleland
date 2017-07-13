@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DoubleShotManager : MonoBehaviour {
 
@@ -101,9 +102,10 @@ public class DoubleShotManager : MonoBehaviour {
     }*/
 
 
-    public int neededPointsToDoubleShot = 200;
+    public int neededPointsToDoubleShot;
     public int doubleShotTime = 200;
     int doubleShotCount = 0;
+    public GameObject DSIcon;
 
     public int waitTimeForDoubleShot = 200;
     int waitCount = 0;
@@ -112,6 +114,7 @@ public class DoubleShotManager : MonoBehaviour {
     void Start()
     {
         PlayerPrefs.SetInt("WaitCountDoubleShot", 0);
+        DSIcon = GameObject.FindGameObjectWithTag("DSPU");
     }
 
     // Update is called once per frame
@@ -124,12 +127,16 @@ public class DoubleShotManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("TimingDoubleShot") == -1)
         {
             if (waitCount > 0)
+            {
                 waitCount--;
+                DSIcon.GetComponent<Image>().color = Color.black;
+            }
 
             print("wait count: " + waitCount);
             if (waitCount <= 0)
             {
                 PlayerPrefs.SetInt("DoubleShotAllowed", 1);
+                DSIcon.GetComponent<Image>().color = Color.white;
             }
         }
 
@@ -154,6 +161,8 @@ public class DoubleShotManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("TimingDoubleShot") == 1)
         {
             doubleShotCount++;
+
+            DSIcon.GetComponent<Image>().color = Color.green;
             if (doubleShotCount >= doubleShotTime)
             {
                 // Quitarle el escudo!

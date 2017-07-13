@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShieldManager : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class ShieldManager : MonoBehaviour {
     public int neededPointsToShield = 200;
     public int shieldTime = 200;
     int shieldCount = 0;
+    public GameObject shieldIcon;
 
     public int waitTimeForShield = 200;
     int waitCount = 0;
@@ -22,7 +24,9 @@ public class ShieldManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetInt("WaitCountShield", 0);
-	}
+        shieldIcon = GameObject.FindGameObjectWithTag("SPU");
+        shieldIcon.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,12 +37,17 @@ public class ShieldManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("TimingShield") == -1)
         {
             if (waitCount > 0)
+            {
                 waitCount--;
+                shieldIcon.GetComponent<Image>().color = Color.black;
+                
+            }
 
             print("wait count: " + waitCount);
             if (waitCount <= 0)
             {
                 PlayerPrefs.SetInt("ShieldAllowed", 1);
+                shieldIcon.GetComponent<Image>().color = Color.white;
             }
         }
 
@@ -52,28 +61,33 @@ public class ShieldManager : MonoBehaviour {
         // shield not allowed -> -1
         if (points >= neededPointsToShield)
         {
+            shieldIcon.SetActive(true);
             PlayerPrefs.SetInt("ShieldAllowed", 1);
         }
         else
         {
+            shieldIcon.SetActive(false);
             PlayerPrefs.SetInt("ShieldAllowed", -1);
         }
         
 
         if (PlayerPrefs.GetInt("TimingShield") == 1)
         {
+            shieldIcon.GetComponent<Image>().color = Color.green;
             shieldCount++;
             if (shieldCount >= shieldTime)
             {
+                
                 // Quitarle el escudo!
                 PlayerPrefs.SetInt("ShieldSet", -1);
                 GameObject.FindGameObjectWithTag("Shield").GetComponentInChildren<SpriteRenderer>().enabled = false;
-
+               
                 // resetear todo
                 PlayerPrefs.SetInt("TimingShield", -1);
                 shieldCount = 0;
 
                 waitCount = waitTimeForShield;
+                
             }
         }
         PlayerPrefs.SetInt("WaitCountShield", waitCount);
