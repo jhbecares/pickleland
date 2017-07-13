@@ -9,6 +9,9 @@ public class ChoqueEnemigo : MonoBehaviour {
     public AudioClip clipHit;
     public AudioClip clipDeath;
 
+    public static int killed = 0;
+    public int everyDeathNumber = 5;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -46,6 +49,16 @@ public class ChoqueEnemigo : MonoBehaviour {
                     // audio y destruccion del objeto
                     AudioSource.PlayClipAtPoint(clipDeath, this.gameObject.transform.position);
                     Destroy(this.gameObject);
+
+                    killed++;
+
+                    int currentLives = PlayerPrefs.GetInt("Lifes");
+                    if (killed % everyDeathNumber == 0 && currentLives < 5)
+                    {
+                        print("subiendo viiiida loooko");
+                        PlayerPrefs.SetInt("Lifes", currentLives+1);
+                    }
+
                 }
                 else
                 {
