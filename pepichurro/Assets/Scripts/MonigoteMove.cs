@@ -45,6 +45,11 @@ public class MonigoteMove : MonoBehaviour {
         {
             AudioSource.PlayClipAtPoint(clip, this.transform.position);
         }
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
+        {
+            PlayerPrefs.Save();
+            Application.Quit();
+        }
 
         if (Input.GetKey(KeyCode.Alpha1) && PlayerPrefs.GetInt("WaitCountShield") <= 0)
         {
@@ -64,6 +69,17 @@ public class MonigoteMove : MonoBehaviour {
             {
                 // No puede :(
             }
+        }
+        // control del sonido
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            AudioListener.pause = false;
+            AudioListener.volume = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AudioListener.pause = true;
+            AudioListener.volume = 0;
         }
 
         // shoot?
