@@ -14,7 +14,7 @@ public class CheckRayo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         monigote = GameObject.Find("Monigote").transform;
-        fireTime = 40;
+        fireTime = 60;
         fireCont = 0;
 	}
 	
@@ -80,7 +80,7 @@ public class CheckRayo : MonoBehaviour {
             position,
             balaSpawn.rotation);
 
-        int bulletVelocity = 30;
+        int bulletVelocity = 20;
 
         // Add velocity to the bullet
         if (enemyLeft)
