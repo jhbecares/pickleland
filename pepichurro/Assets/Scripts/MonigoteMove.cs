@@ -70,6 +70,27 @@ public class MonigoteMove : MonoBehaviour {
                 // No puede :(
             }
         }
+
+        if (Input.GetKey(KeyCode.Alpha2) && PlayerPrefs.GetInt("WaitCountDoubleShot") <= 0)
+        {
+            // el jugador quiere ponerse el shield!
+            // si ha conseguido la puntuacion necesaria se lo ponemos
+            if (PlayerPrefs.GetInt("DoubleShotAllowed") == 1)
+            {
+                // Puede ponerse shield!
+                PlayerPrefs.SetInt("DoubleShotSet", 1);
+                print("timing doubleShot to 1");
+                PlayerPrefs.SetInt("TimingDoubleShot", 1);
+
+                print("Double shot set!!!");
+            }
+            else
+            {
+                // No puede :(
+            }
+        }
+
+
         // control del sonido
         if (Input.GetKeyDown(KeyCode.U))
         {
@@ -86,14 +107,27 @@ public class MonigoteMove : MonoBehaviour {
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
 
-        //transform.Rotate(0, x, 0);
-        //transform.Translate(0, 0, z);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            this.Fire();
+            if (PlayerPrefs.GetInt("DoubleShotSet") == 1)
+            {
+                StartCoroutine(nFire(2, 0.05f));
+            }
+            else
+            {
+                this.Fire();
+            } 
         }
     }
 
+    IEnumerator nFire(int numberOfShoots, float seconds)
+    {
+        this.Fire();
+
+        yield return new WaitForSeconds(seconds);
+        
+        this.Fire();
+    }
 
     void Fire()
     {

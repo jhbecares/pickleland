@@ -12,7 +12,7 @@ public class DoubleShotManager : MonoBehaviour {
      * 
      * To think: ponemos un maximo de escudos?
      */
-    public int neededPointsToDoubleShot = 50;
+/*    public int neededPointsToDoubleShot = 50;
     public int doubleShotTime = 100;
     int doubleShotCount = 0;
 
@@ -97,6 +97,77 @@ public class DoubleShotManager : MonoBehaviour {
             }
         }
         PlayerPrefs.SetInt("WaitCountDoubleShot", waitCountDoubleShot);
+
+    }*/
+
+
+    public int neededPointsToDoubleShot = 200;
+    public int doubleShotTime = 200;
+    int doubleShotCount = 0;
+
+    public int waitTimeForDoubleShot = 200;
+    int waitCount = 0;
+
+    // Use this for initialization
+    void Start()
+    {
+        PlayerPrefs.SetInt("WaitCountDoubleShot", 0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        print("timing doubleshot: " + PlayerPrefs.GetInt("TimingDoubleShot"));
+        print("doubleshot allowed: " + PlayerPrefs.GetInt("DoubleShotAllowed"));
+
+        if (PlayerPrefs.GetInt("TimingDoubleShot") == -1)
+        {
+            if (waitCount > 0)
+                waitCount--;
+
+            print("wait count: " + waitCount);
+            if (waitCount <= 0)
+            {
+                PlayerPrefs.SetInt("DoubleShotAllowed", 1);
+            }
+        }
+
+
+
+
+        // Vemos si tenemos que activar la posibilidad de puntos
+        int points = PlayerPrefs.GetInt("Points");
+
+        // shield allowed -> 1
+        // shield not allowed -> -1
+        if (points >= neededPointsToDoubleShot)
+        {
+            PlayerPrefs.SetInt("DoubleShotAllowed", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("DoubleShotAllowed", -1);
+        }
+
+
+        if (PlayerPrefs.GetInt("TimingDoubleShot") == 1)
+        {
+            doubleShotCount++;
+            if (doubleShotCount >= doubleShotTime)
+            {
+                // Quitarle el escudo!
+                PlayerPrefs.SetInt("DoubleShotSet", -1);
+               // GameObject.FindGameObjectWithTag("Shield").GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+                // resetear todo
+                PlayerPrefs.SetInt("TimingDoubleShot", -1);
+                doubleShotCount = 0;
+
+                waitCount = waitTimeForDoubleShot;
+            }
+        }
+        PlayerPrefs.SetInt("WaitCountDoubleShot", waitCount);
 
     }
 }
