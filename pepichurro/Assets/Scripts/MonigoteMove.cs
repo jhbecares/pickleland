@@ -51,6 +51,11 @@ public class MonigoteMove : MonoBehaviour {
             Application.Quit();
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+
+        }
+
         if (Input.GetKey(KeyCode.Alpha1) && PlayerPrefs.GetInt("WaitCountShield") <= 0)
         {
             // el jugador quiere ponerse el shield!
@@ -89,6 +94,8 @@ public class MonigoteMove : MonoBehaviour {
                 // No puede :(
             }
         }
+
+
 
 
         // control del sonido
