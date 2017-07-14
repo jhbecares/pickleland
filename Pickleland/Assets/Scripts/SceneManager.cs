@@ -7,8 +7,7 @@ public class SceneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Highscore"));
-        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Puntos"));
-        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Vida"));
+        //DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Vida"));
 	}
 	
 	// Update is called once per frame

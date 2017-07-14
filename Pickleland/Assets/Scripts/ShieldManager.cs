@@ -15,7 +15,10 @@ public class ShieldManager : MonoBehaviour {
      */
     public int neededPointsToShield = 200;
     public static int shieldTime = 200;
-   // public int shieldCount = 0;
+    // public int shieldCount = 0;
+
+    public AudioClip shieldClip;
+    public AudioClip shieldDownClip;
     public static int shieldCount { get; set; }
 
     public GameObject shieldIcon;
@@ -23,12 +26,15 @@ public class ShieldManager : MonoBehaviour {
     public int waitTimeForShield = 200;
     int waitCount = 0;
 
+    private bool shieldDownSoundPlayed;
+
 	// Use this for initialization
 	void Start () {
         PlayerPrefs.SetInt("WaitCountShield", 0);
         shieldIcon = GameObject.FindGameObjectWithTag("SPU");
         shieldIcon.SetActive(false);
         shieldCount = 0;
+        shieldDownSoundPlayed = false;
     }
 	
 	// Update is called once per frame
@@ -43,12 +49,19 @@ public class ShieldManager : MonoBehaviour {
             {
                 waitCount--;
                 shieldIcon.GetComponent<Image>().color = Color.black;
+                if (!shieldDownSoundPlayed)
+                {
+                    AudioSource.PlayClipAtPoint(shieldDownClip, this.transform.position);
+                    shieldDownSoundPlayed = true;
+                }
                 
+
             }
 
             //print("wait count: " + waitCount);
             if (waitCount <= 0)
             {
+                shieldDownSoundPlayed = false;
                 PlayerPrefs.SetInt("ShieldAllowed", 1);
                 shieldIcon.GetComponent<Image>().color = Color.white;
             }
@@ -77,6 +90,10 @@ public class ShieldManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("TimingShield") == 1)
         {
             shieldIcon.GetComponent<Image>().color = Color.green;
+            if(shieldCount == 1)
+            {
+                AudioSource.PlayClipAtPoint(shieldClip, this.transform.position);
+            }
             shieldCount++;
             if (shieldCount >= shieldTime)
             {

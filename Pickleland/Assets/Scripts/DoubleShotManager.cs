@@ -107,6 +107,10 @@ public class DoubleShotManager : MonoBehaviour {
     int doubleShotCount = 0;
     public GameObject DSIcon;
 
+    public AudioClip DSupClip;
+    public AudioClip DSdownClip;
+    private bool DSDownSoundPlayed;
+
     public int waitTimeForDoubleShot = 200;
     int waitCount = 0;
 
@@ -118,6 +122,8 @@ public class DoubleShotManager : MonoBehaviour {
         PlayerPrefs.SetInt("TimingDoubleShot", -1);
         PlayerPrefs.SetInt("DoubleShotSet", -1);
         DSIcon = GameObject.FindGameObjectWithTag("DSPU");
+        DSDownSoundPlayed = false;
+        
     }
 
     // Update is called once per frame
@@ -136,11 +142,17 @@ public class DoubleShotManager : MonoBehaviour {
                 {
                     waitCount--;
                     DSIcon.GetComponent<Image>().color = Color.black;
+                    if (!DSDownSoundPlayed)
+                    {
+                        AudioSource.PlayClipAtPoint(DSdownClip, this.transform.position);
+                        DSDownSoundPlayed = true;
+                    }
                 }
 
                 print("wait count: " + waitCount);
                 if (waitCount <= 0)
                 {
+                    DSDownSoundPlayed = false;
                     PlayerPrefs.SetInt("WaitCountDoubleShot", 0);
                     DSIcon.GetComponent<Image>().color = Color.white;
                 }
@@ -170,7 +182,10 @@ public class DoubleShotManager : MonoBehaviour {
         if (PlayerPrefs.GetInt("TimingDoubleShot") == 1)
         {
             doubleShotCount++;
-
+            if (doubleShotCount == 1)
+            {
+                AudioSource.PlayClipAtPoint(DSupClip, this.transform.position);
+            }
             DSIcon.GetComponent<Image>().color = Color.green;
             if (doubleShotCount >= doubleShotTime)
             {

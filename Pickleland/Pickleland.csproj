@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8EBA2A21-7FA0-35E6-58C2-002668E675CF}</ProjectGuid>
+    <ProjectGuid>{420E6758-5293-657D-AABD-C4BFEF3FDF08}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -88,7 +88,9 @@
     <Compile Include="Assets\Scripts\BulletMove.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CheckRayo.cs" />
+    <Compile Include="Assets\Scripts\CheckRayoOlive.cs" />
     <Compile Include="Assets\Scripts\ChoqueEnemigo.cs" />
+    <Compile Include="Assets\Scripts\ChoqueEnemigoOlive.cs" />
     <Compile Include="Assets\Scripts\DoubleShotManager.cs" />
     <Compile Include="Assets\Scripts\EnemyMove.cs" />
     <Compile Include="Assets\Scripts\HighScore.cs" />

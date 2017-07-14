@@ -36,22 +36,20 @@ public class CheckRayo : MonoBehaviour {
 
         for (int i = 0; i < hit.Length; i++)
         {
-            print(hit[i].collider.tag);
-
-
+            //print(hit[i].collider.tag);
             if (hit[i].collider.tag != "EnemyPickle")
             {
-                print(hit[i].collider.tag);
+                //print(hit[i].collider.tag);
                 if (hit[i].collider.tag == "Monigote")
                 {
                     // enemy can see the player!
-                    print("Enemy can see the player");
+                    //print("Enemy can see the player");
                     Fire();
                 }
             }
             else
             {
-                print("Transform is null");
+                //print("Transform is null");
             }
         }
     }
