@@ -14,8 +14,10 @@ public class ShieldManager : MonoBehaviour {
      * To think: ponemos un maximo de escudos?
      */
     public int neededPointsToShield = 200;
-    public int shieldTime = 200;
-    int shieldCount = 0;
+    public static int shieldTime = 200;
+   // public int shieldCount = 0;
+    public static int shieldCount { get; set; }
+
     public GameObject shieldIcon;
 
     public int waitTimeForShield = 200;
@@ -26,6 +28,7 @@ public class ShieldManager : MonoBehaviour {
         PlayerPrefs.SetInt("WaitCountShield", 0);
         shieldIcon = GameObject.FindGameObjectWithTag("SPU");
         shieldIcon.SetActive(false);
+        shieldCount = 0;
     }
 	
 	// Update is called once per frame
@@ -93,4 +96,5 @@ public class ShieldManager : MonoBehaviour {
         PlayerPrefs.SetInt("WaitCountShield", waitCount);
 
 	}
+
 }

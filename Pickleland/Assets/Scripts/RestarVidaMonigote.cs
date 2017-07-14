@@ -55,6 +55,42 @@ public class RestarVidaMonigote : MonoBehaviour {
                 PlayerPrefs.SetInt("Lifes", vidas);
             }
         }
+        else if (other.tag == "BalaEnemigo" && PlayerPrefs.GetInt("ShieldSet") == 1)
+        {
+            GameObject go = Utils.FindTaggedParent(other.gameObject);
+            if (go == lastTriggerGo)
+                return;
+            lastTriggerGo = go;
+
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            if (go != null)
+            {
+                Destroy(other.gameObject);
+                AudioSource.PlayClipAtPoint(clipHit, other.transform.position);
+            }
+        }
+        else if (other.tag == "EnemyPickle" && PlayerPrefs.GetInt("ShieldSet") == 1)
+        {
+            GameObject go = Utils.FindTaggedParent(other.gameObject);
+            if (go == lastTriggerGo)
+                return;
+            lastTriggerGo = go;
+
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            if (go != null)
+            {
+                Destroy(other.gameObject);
+                // TODO: sonido?
+               // AudioSource.PlayClipAtPoint(clipHit, other.transform.position);
+            }
+            PlayerPrefs.SetInt("ShieldSet", -1);
+            ShieldManager.shieldCount = ShieldManager.shieldTime;
+        }
+        else if (other.tag == "EnemyPickle" && PlayerPrefs.GetInt("ShieldSet") == -1)
+        {
+            // borrar vida
+
+        } 
     }
 
     void BlinkPlayer(int numBlinks)
