@@ -114,6 +114,9 @@ public class DoubleShotManager : MonoBehaviour {
     void Start()
     {
         PlayerPrefs.SetInt("WaitCountDoubleShot", 0);
+        PlayerPrefs.SetInt("DoubleShotAllowed", -1);
+        PlayerPrefs.SetInt("TimingDoubleShot", -1);
+        PlayerPrefs.SetInt("DoubleShotSet", -1);
         DSIcon = GameObject.FindGameObjectWithTag("DSPU");
     }
 
@@ -124,19 +127,23 @@ public class DoubleShotManager : MonoBehaviour {
         print("timing doubleshot: " + PlayerPrefs.GetInt("TimingDoubleShot"));
         print("doubleshot allowed: " + PlayerPrefs.GetInt("DoubleShotAllowed"));
 
-        if (PlayerPrefs.GetInt("TimingDoubleShot") == -1)
+        if (PlayerPrefs.GetInt("DoubleShotAllowed") == 1)
         {
-            if (waitCount > 0)
+            print("doubleshot allowed");
+            if (PlayerPrefs.GetInt("TimingDoubleShot") == -1)
             {
-                waitCount--;
-                DSIcon.GetComponent<Image>().color = Color.black;
-            }
+                if (waitCount > 0)
+                {
+                    waitCount--;
+                    DSIcon.GetComponent<Image>().color = Color.black;
+                }
 
-            print("wait count: " + waitCount);
-            if (waitCount <= 0)
-            {
-                PlayerPrefs.SetInt("DoubleShotAllowed", 1);
-                DSIcon.GetComponent<Image>().color = Color.white;
+                print("wait count: " + waitCount);
+                if (waitCount <= 0)
+                {
+                    PlayerPrefs.SetInt("WaitCountDoubleShot", 0);
+                    DSIcon.GetComponent<Image>().color = Color.white;
+                }
             }
         }
 
@@ -151,10 +158,12 @@ public class DoubleShotManager : MonoBehaviour {
         if (points >= neededPointsToDoubleShot)
         {
             PlayerPrefs.SetInt("DoubleShotAllowed", 1);
+            DSIcon.SetActive(true);
         }
         else
         {
             PlayerPrefs.SetInt("DoubleShotAllowed", -1);
+            DSIcon.SetActive(false);
         }
 
 

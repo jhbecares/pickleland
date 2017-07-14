@@ -86,7 +86,7 @@ public class EnemyMove : MonoBehaviour {
             }
             else
             {
-                print("la altura no es la miiiisma loka");
+                //print("la altura no es la miiiisma loka");
             }
 
         }

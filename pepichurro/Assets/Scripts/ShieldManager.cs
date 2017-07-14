@@ -31,8 +31,8 @@ public class ShieldManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        print("timing shield: " + PlayerPrefs.GetInt("TimingShield"));
-        print("shield allowed: " + PlayerPrefs.GetInt("ShieldAllowed"));
+        //print("timing shield: " + PlayerPrefs.GetInt("TimingShield"));
+        //print("shield allowed: " + PlayerPrefs.GetInt("ShieldAllowed"));
 
         if (PlayerPrefs.GetInt("TimingShield") == -1)
         {
@@ -43,7 +43,7 @@ public class ShieldManager : MonoBehaviour {
                 
             }
 
-            print("wait count: " + waitCount);
+            //print("wait count: " + waitCount);
             if (waitCount <= 0)
             {
                 PlayerPrefs.SetInt("ShieldAllowed", 1);

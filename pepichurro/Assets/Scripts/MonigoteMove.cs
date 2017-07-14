@@ -82,7 +82,7 @@ public class MonigoteMove : MonoBehaviour {
             // si ha conseguido la puntuacion necesaria se lo ponemos
             if (PlayerPrefs.GetInt("DoubleShotAllowed") == 1)
             {
-                // Puede ponerse shield!
+                // Puede ponerse DS!
                 PlayerPrefs.SetInt("DoubleShotSet", 1);
                 print("timing doubleShot to 1");
                 PlayerPrefs.SetInt("TimingDoubleShot", 1);
