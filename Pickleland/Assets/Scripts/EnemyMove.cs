@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour {
 
     public GameObject enemyPrefab;
+    public GameObject enemyPrefab2;
     public GameObject balaPrefab;
     public Transform enemySpawn;
+    public Transform enemySpawn2;
     private Transform monigote;
     public int difficultyIncreaseDistance;
     private int currentDifficultyDistance;
@@ -16,13 +18,18 @@ public class EnemyMove : MonoBehaviour {
     public int count = 0;
     public int limitCount = 200;
 
+    public int countAceituna = 0;
+    public int limitCountAceituna = 300;
 
 
 	// Use this for initialization
 	void Start () {
         monigote = GameObject.Find("Monigote").transform;
         enemySpawn = GameObject.Find("EnemySpawn").transform;
+        enemySpawn2 = GameObject.Find("EnemySpawn").transform;
+
         this.count = 0;
+        this.countAceituna = 0;
         this.currentDifficultyDistance = 0;
 	}
 	
@@ -30,6 +37,7 @@ public class EnemyMove : MonoBehaviour {
 	void Update () {
         if (monigote == null) Destroy(this);
         this.count++;
+        this.countAceituna++;
         if (this.count >= limitCount)
         {
             // create enemy checking player pos
@@ -53,13 +61,43 @@ public class EnemyMove : MonoBehaviour {
             this.count = 0;
 
         }
-        if(monigote != null && monigote.position.x > currentDifficultyDistance + difficultyIncreaseDistance)
+        if (this.countAceituna >= this.limitCountAceituna)
+        {
+            // create enemy checking player pos
+
+            //enemySpawn.position = monigote.transform.position;
+            float rand = Random.Range(0, 2);
+            Vector3 enemyPos;
+            if (rand < 0.5f)
+            {
+                enemyPos = new Vector3(monigote.transform.position.x + 15f, -3.685f + 10f, monigote.transform.position.z);
+            }
+            else
+            {
+                enemyPos = new Vector3(monigote.transform.position.x - 5f, -3.685f + 10f, monigote.transform.position.z);
+            }
+            enemySpawn2.position = enemyPos;
+
+            var enemy = (GameObject)Instantiate(
+            enemyPrefab2,
+            enemySpawn2.position,
+            enemySpawn2.rotation);
+            this.countAceituna = 0;
+
+        }
+        if (monigote != null && monigote.position.x > currentDifficultyDistance + difficultyIncreaseDistance)
         {
             if(limitCount > 11)
             {
                 currentDifficultyDistance = (int) monigote.position.x;
                 limitCount -= difficultyIncrease;
             }
+            if (limitCount > 16)
+            {
+                currentDifficultyDistance = (int)monigote.position.x;
+                limitCountAceituna -= difficultyIncrease;
+            }
+
         }
 
     }
