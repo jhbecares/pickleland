@@ -24,10 +24,13 @@ public class PlayerPoints : MonoBehaviour {
         TextMesh guitext = guiGO.GetComponent<TextMesh>();
         guitext.text = "Points: " + points;
 
-        Transform monigote = GameObject.FindGameObjectWithTag("Monigote").transform;
+        if (GameObject.FindGameObjectWithTag("Monigote") != null)
+        {
+            Transform monigote = GameObject.FindGameObjectWithTag("Monigote").transform;
 
-        guitext.transform.position = new Vector2(monigote.transform.position.x - 9f, monigote.transform.position.y + 4.5f);
-
+            guitext.transform.position = new Vector2(monigote.transform.position.x - 9f, monigote.transform.position.y + 4.5f);
+        }
+        
         if (points > 0 && points > HighScore.score) 
             HighScore.score = points;
     }

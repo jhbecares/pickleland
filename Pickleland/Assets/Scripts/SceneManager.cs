@@ -7,8 +7,8 @@ public class SceneManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Highscore"));
-        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Puntos"));
-        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Vida"));
+        //DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Puntos"));
+        //DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Vida"));
 	}
 	
 	// Update is called once per frame
@@ -30,7 +30,15 @@ public class SceneManager : MonoBehaviour {
         }
         if (PlayerPrefs.GetInt("Lifes") <= 0)
         {
-            Application.LoadLevel("GameOver");
+
+             foreach (GameObject o in Object.FindObjectsOfType<GameObject>()) {
+                 Destroy(o);
+             }
+     
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);// scene is game over
+
+            //Application.LoadLevel("GameOver");
         }
 	}
 }

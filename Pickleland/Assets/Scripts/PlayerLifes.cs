@@ -24,7 +24,7 @@ public class PlayerLifes : MonoBehaviour {
         GameObject guiGO = GameObject.FindGameObjectWithTag("LifesTag");
 
         TextMesh guitext = guiGO.GetComponent<TextMesh>();
-        guitext.text = "Lifes: " + lifes;
+        guitext.text = "Lives: " + lifes;
 
         Transform monigote =  GameObject.FindGameObjectWithTag("Monigote").transform;
 

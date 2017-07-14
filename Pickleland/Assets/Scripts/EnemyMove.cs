@@ -28,6 +28,7 @@ public class EnemyMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (monigote == null) Destroy(this);
         this.count++;
         if (this.count >= limitCount)
         {
@@ -52,7 +53,7 @@ public class EnemyMove : MonoBehaviour {
             this.count = 0;
 
         }
-        if(monigote.position.x > currentDifficultyDistance + difficultyIncreaseDistance)
+        if(monigote != null && monigote.position.x > currentDifficultyDistance + difficultyIncreaseDistance)
         {
             if(limitCount > 11)
             {
