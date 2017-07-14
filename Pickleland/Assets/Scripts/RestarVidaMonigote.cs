@@ -89,7 +89,36 @@ public class RestarVidaMonigote : MonoBehaviour {
         else if (other.tag == "EnemyPickle" && PlayerPrefs.GetInt("ShieldSet") == -1)
         {
             // borrar vida
+            GameObject go = Utils.FindTaggedParent(other.gameObject);
+            if (go == lastTriggerGo)
+                return;
+            lastTriggerGo = go;
 
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+            if (go != null)
+            {
+                Destroy(other.gameObject);
+
+                this.BlinkPlayer(4);
+
+                // restar vida si la tuviera
+                vidas--;
+                // 
+                if (vidas <= 0)
+                {
+                    // audio y destruccion del objeto
+                    // AudioSource.PlayClipAtPoint(clipDeath, this.gameObject.transform.position);
+                    
+                    Destroy(this.gameObject);
+                    Application.LoadLevel("GameOver");
+                }
+                else
+                {
+                    AudioSource.PlayClipAtPoint(clipHit, other.transform.position);
+                }
+
+                PlayerPrefs.SetInt("Lifes", vidas);
+            }
         } 
     }
 
