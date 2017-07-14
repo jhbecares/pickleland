@@ -43,4 +43,9 @@ public class BulletMove : MonoBehaviour {
         }
 
 	}
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
 }
