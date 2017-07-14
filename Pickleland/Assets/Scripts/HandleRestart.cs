@@ -17,5 +17,12 @@ public class HandleRestart : MonoBehaviour {
             //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             Application.LoadLevel("Level0");
         }
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameOver" 
+            && (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            // Restart
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            Application.Quit();
+        }
 	}
 }

@@ -28,7 +28,7 @@ public class PlayerLifes : MonoBehaviour {
 
         Transform monigote =  GameObject.FindGameObjectWithTag("Monigote").transform;
 
-        guitext.transform.position = new Vector2(monigote.transform.position.x - 9f, monigote.transform.position.y + 6f);
+        guitext.transform.position = new Vector2(monigote.transform.position.x - 7f, monigote.transform.position.y + 6f);
     }
 
     public static int lifes { get; set; }
