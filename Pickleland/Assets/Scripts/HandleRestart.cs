@@ -11,10 +11,11 @@ public class HandleRestart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameOver" && Input.GetKeyDown(KeyCode.R)) 
         {
             // Restart
-            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            Application.LoadLevel("Level0");
         }
 	}
 }

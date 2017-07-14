@@ -15,8 +15,9 @@ public class SceneManager : MonoBehaviour {
 	void Update () {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Load" && Input.GetKeyDown(KeyCode.S))
         {
-           // Application.LoadLevel("Level0");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            print("active scene is load");
+            Application.LoadLevel("Level0");
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         }
         if (Input.GetKeyDown(KeyCode.U))
         {
@@ -28,17 +29,18 @@ public class SceneManager : MonoBehaviour {
             AudioListener.pause = true;
             AudioListener.volume = 0;
         }
-        if (PlayerPrefs.GetInt("Lifes") <= 0)
+        if (PlayerPrefs.GetInt("Lifes") <= 0 && 
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Level0")
         {
 
-             foreach (GameObject o in Object.FindObjectsOfType<GameObject>()) {
+            foreach (GameObject o in Object.FindObjectsOfType<GameObject>()) {
                  Destroy(o);
              }
      
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);// scene is game over
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(2);// scene is game over
 
-            //Application.LoadLevel("GameOver");
+            Application.LoadLevel("GameOver");
         }
 	}
 }
