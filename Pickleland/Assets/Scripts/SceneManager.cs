@@ -13,7 +13,7 @@ public class SceneManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Load" && Input.GetKeyDown(KeyCode.S))
         {
            // Application.LoadLevel("Level0");
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
@@ -27,6 +27,10 @@ public class SceneManager : MonoBehaviour {
         {
             AudioListener.pause = true;
             AudioListener.volume = 0;
+        }
+        if (PlayerPrefs.GetInt("Lifes") <= 0)
+        {
+            Application.LoadLevel("GameOver");
         }
 	}
 }

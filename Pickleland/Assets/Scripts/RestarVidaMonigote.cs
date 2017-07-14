@@ -45,6 +45,7 @@ public class RestarVidaMonigote : MonoBehaviour {
                     // audio y destruccion del objeto
                     AudioSource.PlayClipAtPoint(clipDeath, this.gameObject.transform.position);
                     Destroy(this.gameObject);
+                    Application.LoadLevel("GameOver");
                 }
                 else
                 {
