@@ -36,9 +36,13 @@ public class MonigoteMove : MonoBehaviour {
             animator.SetBool("backwards", false);
             transform.Translate(Vector3.right * changeSpeed * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            transform.Translate(Vector3.up * changeSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.up * changeSpeed * Time.deltaTime);
+            if (GetComponent<Rigidbody2D>().velocity.y == 0)
+            {
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8100);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W))
