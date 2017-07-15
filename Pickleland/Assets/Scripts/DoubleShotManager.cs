@@ -129,13 +129,8 @@ public class DoubleShotManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        print("timing doubleshot: " + PlayerPrefs.GetInt("TimingDoubleShot"));
-        print("doubleshot allowed: " + PlayerPrefs.GetInt("DoubleShotAllowed"));
-
         if (PlayerPrefs.GetInt("DoubleShotAllowed") == 1)
         {
-            print("doubleshot allowed");
             if (PlayerPrefs.GetInt("TimingDoubleShot") == -1)
             {
                 if (waitCount > 0)
@@ -149,7 +144,6 @@ public class DoubleShotManager : MonoBehaviour {
                     }
                 }
 
-                print("wait count: " + waitCount);
                 if (waitCount <= 0)
                 {
                     DSDownSoundPlayed = false;
