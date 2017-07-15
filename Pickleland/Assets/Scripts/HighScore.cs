@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HighScore : MonoBehaviour {
@@ -24,13 +25,13 @@ public class HighScore : MonoBehaviour {
        // gt.transform.position = new Vector2(monigote.transform.position.x - 9f, monigote.transform.position.y + 4.5f);
         GameObject guiGO = GameObject.FindGameObjectWithTag("Highscore");
 
-        TextMesh guitext = guiGO.GetComponent<TextMesh>();
+        Text guitext = guiGO.GetComponent<Text>();
         guitext.text = "High score: " + score;
-
+        /*
         Transform monigote = GameObject.FindGameObjectWithTag("Monigote").transform;
 
         guitext.transform.position = new Vector2(monigote.transform.position.x - 7f, monigote.transform.position.y + 7.5f);
-
+        */
 
         // Update PepichurroHighScore in PlayerPrefs if necessary
         if (score > PlayerPrefs.GetInt("PepichurroHighScore"))

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerPoints : MonoBehaviour {
 
@@ -21,16 +22,16 @@ public class PlayerPoints : MonoBehaviour {
 
         GameObject guiGO = GameObject.FindGameObjectWithTag("PuntosTag");
 
-        TextMesh guitext = guiGO.GetComponent<TextMesh>();
+        Text guitext = guiGO.GetComponent<Text>();
         guitext.text = "Points: " + points;
-
+        /*
         if (GameObject.FindGameObjectWithTag("Monigote") != null)
         {
             Transform monigote = GameObject.FindGameObjectWithTag("Monigote").transform;
 
             guitext.transform.position = new Vector2(monigote.transform.position.x - 7f, monigote.transform.position.y + 4.5f);
         }
-        
+        */
         if (points > 0 && points > HighScore.score) 
             HighScore.score = points;
     }
