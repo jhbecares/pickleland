@@ -137,11 +137,15 @@ public class MonigoteMove : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (PlayerPrefs.GetInt("DoubleShotSet") == 1)
+            if (PlayerPrefs.GetInt("DoubleShotSet") == 1 &&
+                PlayerPrefs.GetInt("DisparoDirigidoSet") == 1)
+            {
+                StartCoroutine(nFireDirigido(2, 0.05f));
+            }
+            else if (PlayerPrefs.GetInt("DoubleShotSet") == 1)
             {
                 StartCoroutine(nFire(2, 0.05f));
             }
-
             else if (PlayerPrefs.GetInt("DisparoDirigidoSet") == 1)
             {
                 this.DisparaDirigido();
@@ -160,6 +164,15 @@ public class MonigoteMove : MonoBehaviour {
         yield return new WaitForSeconds(seconds);
         
         this.Fire();
+    }
+
+    IEnumerator nFireDirigido(int numberOfShoots, float seconds)
+    {
+        this.DisparaDirigido();
+
+        yield return new WaitForSeconds(seconds);
+
+        this.DisparaDirigido();
     }
 
     void Fire()
