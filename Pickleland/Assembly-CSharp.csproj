@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\CheckRayoOlive.cs" />
      <Compile Include="Assets\Scripts\ChoqueEnemigo.cs" />
      <Compile Include="Assets\Scripts\ChoqueEnemigoOlive.cs" />
+     <Compile Include="Assets\Scripts\DisparoDirigidoManager.cs" />
      <Compile Include="Assets\Scripts\DoubleShotManager.cs" />
      <Compile Include="Assets\Scripts\EnemyMove.cs" />
      <Compile Include="Assets\Scripts\HandleRestart.cs" />

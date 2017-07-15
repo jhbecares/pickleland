@@ -99,7 +99,24 @@ public class MonigoteMove : MonoBehaviour {
             }
         }
 
+        if (Input.GetKey(KeyCode.Alpha3) && PlayerPrefs.GetInt("WaitCountDisparoDirigido") <= 0)
+        {
+            // el jugador quiere el disparo dirigido!
+            // si ha conseguido la puntuacion necesaria se lo ponemos
+            if (PlayerPrefs.GetInt("DisparoDirigidoAllowed") == 1)
+            {
+                // Puede ponerse DS!
+                PlayerPrefs.SetInt("DisparoDirigidoSet", 1);
+                print("timing disparoDirigido to 1");
+                PlayerPrefs.SetInt("TimingDisparoDirigido", 1);
 
+                print("DisparoDirigido set!!!");
+            }
+            else
+            {
+                // No puede :(
+            }
+        }
 
 
         // control del sonido
@@ -123,6 +140,10 @@ public class MonigoteMove : MonoBehaviour {
             if (PlayerPrefs.GetInt("DoubleShotSet") == 1)
             {
                 StartCoroutine(nFire(2, 0.05f));
+            }
+            else if (PlayerPrefs.GetInt("DisparoDirigidoSet") == 1)
+            {
+                this.DisparaDirigido();
             }
             else
             {
@@ -173,5 +194,76 @@ public class MonigoteMove : MonoBehaviour {
         }
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 8.0f);
+    }
+
+    void DisparaDirigido()
+    {
+
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("EnemyPickle");
+
+        Transform posClosestEnemy = null;
+        GameObject closestEnemy = null;
+        float distance;
+        float minDistance = 100000;
+        foreach (GameObject go in gos)
+        {
+            distance = Vector3.Distance(this.gameObject.transform.position, go.gameObject.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                posClosestEnemy = go.gameObject.transform;
+                closestEnemy = go;
+            }
+        }
+
+        Vector3 position;
+        if (posClosestEnemy != null && posClosestEnemy.transform.position.x < this.gameObject.transform.position.x)
+        {
+            position = new Vector3(balaSpawn.position.x - 1, balaSpawn.position.y, 0);
+        }
+        else
+        {
+            position = new Vector3(balaSpawn.position.x + 1, balaSpawn.position.y, 0);
+        }
+
+        
+
+        var bullet = (GameObject)Instantiate(
+            balaPrefab,
+            position,
+            balaSpawn.rotation);
+
+        //bullet.transform.LookAt(posClosestEnemy);
+
+        StartCoroutine(FindEnemy(bullet, closestEnemy));
+
+       /* if (enemyToLeft)
+        {
+            bullet.GetComponent<Rigidbody2D>().velocity = (bullet.transform.right * -bulletVelocity);
+        }
+        else
+        {
+            bullet.GetComponent<Rigidbody2D>().velocity = (bullet.transform.right * bulletVelocity);
+        }*/
+
+        // Destroy the bullet after 2 seconds
+        Destroy(bullet, 8.0f);
+    }
+
+    IEnumerator FindEnemy(GameObject bullet, GameObject enemy) // corutina
+    {
+        int bulletVelocity = 30;
+
+        while (bullet != null && enemy != null)
+        {
+            bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, 
+                enemy.gameObject.transform.position, Time.deltaTime * bulletVelocity);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        if (enemy == null)
+        {
+            Destroy(bullet);
+        }
+        yield return null;
     }
 }

@@ -36,18 +36,13 @@ public class CheckRayoOlive : MonoBehaviour {
 
         for (int i = 0; i < hit.Length; i++)
         {
-            print(hit[i].collider.tag);
-
-
             if (hit[i].collider.tag != "EnemyPickle")
             {
                 print(hit[i].collider.tag);
                 if (hit[i].collider.tag == "Monigote")
                 {
                     // enemy can see the player!
-                    print("Aplicando fuerza " +
-                        hit[i].collider.transform.position.x);
-                    
+                   
                     float xPos = hit[i].collider.transform.position.x;
                     float vel = 55;
                     float value = checkPos(xPos);
