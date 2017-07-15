@@ -49,16 +49,16 @@ public class CheckRayoOlive : MonoBehaviour {
                         hit[i].collider.transform.position.x);
                     
                     float xPos = hit[i].collider.transform.position.x;
-                    float vel = 5;
-                    
-                    if (xPos < 0)
+                    float vel = 55;
+                    float value = checkPos(xPos);
+                    if (xPos < GetComponent<Transform>().position.x)
                     {
                         this.transform.GetComponent<Rigidbody2D>().AddForce(
-                        new Vector2(checkPos(xPos) * 5, -xPos*2) * vel);
+                        new Vector2(-value, value) * vel);
                     }
                     else {
                         this.transform.GetComponent<Rigidbody2D>().AddForce(
-                        new Vector2(checkPos(xPos) * 5,xPos*2) * vel);
+                        new Vector2(value, value) * vel);
                     }
                     AudioSource.PlayClipAtPoint(jumpClip, this.transform.position);
                 }
@@ -75,25 +75,11 @@ public class CheckRayoOlive : MonoBehaviour {
         float enemyX = GetComponent<Transform>().position.x;
         if (enemyX < x)
         {
-            if (x < 0)
-            {
-                return -x;
-            }
-            else
-            {
-                return x;
-            }
+            return x - enemyX;
         }
         else
         {
-            if (x < 0)
-            {
-                return x;
-            }
-            else
-            {
-                return -x;
-            }
+            return enemyX - x;
         }
     }
 
