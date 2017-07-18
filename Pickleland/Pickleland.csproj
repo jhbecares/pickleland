@@ -84,11 +84,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Boss1Script.cs" />
     <Compile Include="Assets\Scripts\BuildingCollide.cs" />
     <Compile Include="Assets\Scripts\BulletMove.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CheckRayo.cs" />
     <Compile Include="Assets\Scripts\CheckRayoOlive.cs" />
+    <Compile Include="Assets\Scripts\ChoqueBoss.cs" />
     <Compile Include="Assets\Scripts\ChoqueEnemigo.cs" />
     <Compile Include="Assets\Scripts\ChoqueEnemigoOlive.cs" />
     <Compile Include="Assets\Scripts\DisparoDirigidoManager.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\HandleRestart.cs" />
     <Compile Include="Assets\Scripts\HighScore.cs" />
     <Compile Include="Assets\Scripts\MonigoteMove.cs" />
+    <Compile Include="Assets\Scripts\MusicChange.cs" />
     <Compile Include="Assets\Scripts\PlayerLifes.cs" />
     <Compile Include="Assets\Scripts\PlayerPoints.cs" />
     <Compile Include="Assets\Scripts\RandomBuildingGenerator.cs" />

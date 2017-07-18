@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour {
 
     public GameObject enemyPrefab;
     public GameObject enemyPrefab2;
+    public GameObject bossPrefab;
     public GameObject balaPrefab;
     public Transform enemySpawn;
     public Transform enemySpawn2;
@@ -21,9 +22,10 @@ public class EnemyMove : MonoBehaviour {
     public int countAceituna = 0;
     public int limitCountAceituna = 300;
 
-
-	// Use this for initialization
-	void Start () {
+    private bool bossSpawn1;
+    private bool bossSpawn2;
+    // Use this for initialization
+    void Start () {
         monigote = GameObject.Find("Monigote").transform;
         enemySpawn = GameObject.Find("EnemySpawn").transform;
         enemySpawn2 = GameObject.Find("EnemySpawn").transform;
@@ -99,7 +101,26 @@ public class EnemyMove : MonoBehaviour {
             }
 
         }
+        if (monigote != null)
+        {
+            if (monigote.position.x > 925 && !bossSpawn1)
+            {
+                bossSpawn1 = true;
+                var enemy = (GameObject)Instantiate(
+               bossPrefab,
+               new Vector3(monigote.position.x + 50, -3.58f, -0.3f),
+               enemySpawn2.rotation);
+            }
 
+            if (monigote.position.x > 960 && !bossSpawn2)
+            {
+                bossSpawn2 = true;
+                var enemy = (GameObject)Instantiate(
+               bossPrefab,
+               new Vector3(monigote.position.x - 15, -3.58f, -0.3f),
+               enemySpawn2.rotation);
+            }
+        }
     }
 
     void LateUpdate()

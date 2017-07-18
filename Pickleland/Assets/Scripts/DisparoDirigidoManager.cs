@@ -33,8 +33,8 @@ public class DisparoDirigidoManager : MonoBehaviour {
     void Update()
     {
 
-        print("timing DisparoDirigido: " + PlayerPrefs.GetInt("TimingDisparoDirigido"));
-        print("DisparoDirigido allowed: " + PlayerPrefs.GetInt("DisparoDirigidoAllowed"));
+        //print("timing DisparoDirigido: " + PlayerPrefs.GetInt("TimingDisparoDirigido"));
+        //print("DisparoDirigido allowed: " + PlayerPrefs.GetInt("DisparoDirigidoAllowed"));
 
         if (PlayerPrefs.GetInt("DisparoDirigidoAllowed") == 1)
         {
@@ -88,7 +88,7 @@ public class DisparoDirigidoManager : MonoBehaviour {
             {
                 AudioSource.PlayClipAtPoint(DisparoDirigidoUpClip, this.transform.position);
             }
-            DisparoDirigidoIcon.GetComponent<Image>().color = Color.red;
+            DisparoDirigidoIcon.GetComponent<Image>().color = Color.green;
             if (DisparoDirigidoCount >= DisparoDirigidoTime)
             {
                 // Quitarle el escudo!

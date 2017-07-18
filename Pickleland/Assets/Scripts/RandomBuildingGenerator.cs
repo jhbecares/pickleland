@@ -15,7 +15,7 @@ public class RandomBuildingGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
             var enemy = (GameObject)Instantiate(
             fondo,
@@ -33,44 +33,51 @@ public class RandomBuildingGenerator : MonoBehaviour
         }
         for (int i = 0; i < 1000; i++)
         {
-
-            int random = Random.Range(0, 2);
-            if (random == 0)
+            float xpos = initial.x + 47 * (i + 1);
+            if (xpos < 400 || (xpos > 510 && xpos < 850) || xpos > 1050)
             {
-                Vector3 pos = new Vector3(initial.x + 47 * (i + 1), -1.21f, -1f);
-                var enemy = (GameObject)Instantiate(
-                wreckedBuildingPrefab,
-                pos,
-                new Quaternion());
-            }
-            else
-            {
-                Vector3 pos = new Vector3(initial.x + 47 * (i + 1), 1.2f, 3f);
-                var enemy = (GameObject)Instantiate(
-                buildingPrefab,
-                pos,
-                new Quaternion());
+                int random = Random.Range(0, 2);
+                if (random == 0)
+                {
+                    Vector3 pos = new Vector3(xpos, -1.21f, -1f);
+                    var enemy = (GameObject)Instantiate(
+                    wreckedBuildingPrefab,
+                    pos,
+                    new Quaternion());
+                }
+                else
+                {
+                    Vector3 pos = new Vector3(xpos, 1.2f, 3f);
+                    var enemy = (GameObject)Instantiate(
+                    buildingPrefab,
+                    pos,
+                    new Quaternion());
+                }
             }
         }
 
         for (int i = 0; i < 1000; i++)
         {
-            int random = Random.Range(0, 2);
-            if (random == 0)
+            float xpos = initial.x + 37 * (i + 1);
+            if (xpos < 400 || (xpos > 510 && xpos < 850) || xpos > 1050)
             {
-                Vector3 pos = new Vector3(initial.x + 37 * (i + 1), -3.89f, 0);
-                var enemy = (GameObject)Instantiate(
-                trashcan,
-                pos,
-                new Quaternion());
-            }
-            else
-            {
-                Vector3 pos = new Vector3(initial.x + 37 * (i + 1), -3.6f, -0.6f);
-                var enemy = (GameObject)Instantiate(
-                trashcan2,
-                pos,
-                new Quaternion());
+                int random = Random.Range(0, 2);
+                if (random == 0)
+                {
+                    Vector3 pos = new Vector3(xpos, -3.89f, 0);
+                    var enemy = (GameObject)Instantiate(
+                    trashcan,
+                    pos,
+                    new Quaternion());
+                }
+                else
+                {
+                    Vector3 pos = new Vector3(xpos, -3.6f, -0.6f);
+                    var enemy = (GameObject)Instantiate(
+                    trashcan2,
+                    pos,
+                    new Quaternion());
+                }
             }
         }
     }

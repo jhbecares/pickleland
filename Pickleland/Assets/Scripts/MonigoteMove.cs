@@ -39,15 +39,16 @@ public class MonigoteMove : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W))
         {
             //transform.Translate(Vector3.up * changeSpeed * Time.deltaTime);
-            if (GetComponent<Rigidbody2D>().velocity.y == 0)
+            if (GetComponent<Rigidbody2D>().velocity.y < 0.15 && GetComponent<Rigidbody2D>().velocity.y > -0.15)
             {
                 GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8100);
+                AudioSource.PlayClipAtPoint(clip, this.transform.position);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            AudioSource.PlayClipAtPoint(clip, this.transform.position);
+            
         }
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
         {
@@ -214,6 +215,10 @@ public class MonigoteMove : MonoBehaviour {
     {
 
         GameObject[] gos = GameObject.FindGameObjectsWithTag("EnemyPickle");
+        if(gos.Length == 0)
+        {
+            gos = GameObject.FindGameObjectsWithTag("Boss");
+        }
 
         Transform posClosestEnemy = null;
         GameObject closestEnemy = null;
